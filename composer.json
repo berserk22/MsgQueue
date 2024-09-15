@@ -2,6 +2,7 @@
   "name": "skeleton-app/msg-queue",
   "description": "SkeletonApp Module MsgQueue",
   "type": "modules",
+  "version": "v0.0.1",
   "require": {
     "php": ">=8.2"
   },
