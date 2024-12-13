@@ -21,6 +21,9 @@ class DashboardController extends Dashboard {
 
     use DashboardTrait, MsgQueueTrait;
 
+    /**
+     * @var string
+     */
     private string $dataTimeFormat = 'Y-m-d H:i:s';
 
     /**
@@ -49,7 +52,12 @@ class DashboardController extends Dashboard {
             $start = strtotime(date("d.m.Y 00:00:00", strtotime($formData["dates"][0])));
             $end = strtotime(date("d.m.Y 23:59:59", strtotime($formData["dates"][1])));
 
-            $liste = $this->getMsgManager()->getMsgMailEntity()::whereBetween('created_at', [date($this->dataTimeFormat, $start), date($this->dataTimeFormat, $end)])->orderBy('id', 'DESC')->get();
+            $liste = $this->getMsgManager()->getMsgMailEntity()::whereBetween('created_at',
+                [
+                    date($this->dataTimeFormat, $start),
+                    date($this->dataTimeFormat, $end)
+                ]
+            )->orderBy('id', 'DESC')->get();
 
             $this->getView()->setVariables([
                 'fromDate'=>$formData["dates"][0],
@@ -62,7 +70,12 @@ class DashboardController extends Dashboard {
             $start = strtotime(date("d.m.Y 00:00:00", strtotime($from_date)));
             $end = strtotime(date("d.m.Y 23:59:59", time()));
 
-            $liste = $this->getMsgManager()->getMsgMailEntity()::whereBetween('created_at', [date($this->dataTimeFormat, $start), date($this->dataTimeFormat, $end)])->orderBy('id', 'DESC')->get();
+            $liste = $this->getMsgManager()->getMsgMailEntity()::whereBetween('created_at',
+                [
+                    date($this->dataTimeFormat, $start),
+                    date($this->dataTimeFormat, $end)
+                ]
+            )->orderBy('id', 'DESC')->get();
 
             $this->getView()->setVariables([
                 'fromDate'=>$from_date,

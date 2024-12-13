@@ -8,6 +8,7 @@
 namespace Modules\MsgQueue\Console;
 
 use Core\Console\Command;
+use Core\Exception;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Modules\MsgQueue\Db\Models\MailQueue;
@@ -79,7 +80,7 @@ class SendMail extends Command {
                 $message->logged = 'success';
                 $message->save();
                 usleep(500000);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $message->error = $e->getMessage();
                 $message->logged = '';
                 $message->save();
