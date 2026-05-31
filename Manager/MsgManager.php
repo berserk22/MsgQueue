@@ -14,9 +14,7 @@ class MsgManager {
 
     public function initEntity(): static {
         if (!$this->getContainer()->has($this->mailQueue)) {
-            $this->getContainer()->set($this->mailQueue, function () {
-                return 'Modules\MsgQueue\Db\Models\MailQueue';
-            });
+            $this->getContainer()->set($this->mailQueue, 'Modules\MsgQueue\Db\Models\MailQueue');
         }
         return $this;
     }

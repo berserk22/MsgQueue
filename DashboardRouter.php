@@ -33,17 +33,17 @@ class DashboardRouter extends Router {
         ],
         'view' => [
             'callback' => 'view',
-            'pattern' =>'/view/{msgId:[0-9]+}',
+            'pattern' =>'/view/{msgId:int}',
             'method' => ['POST', 'GET']
         ],
         'redirect'=>[
             'callback' => 'redirect',
-            'pattern' =>'/redirect/{msgId:[0-9]+}',
+            'pattern' =>'/redirect/{msgId:int}',
             'method' => ['POST', 'GET']
         ],
         'remove'=>[
             'callback' => 'remove',
-            'pattern' =>'/remove-{msgId:[0-9]+}',
+            'pattern' =>'/remove-{msgId:int}',
             'method' => ['DELETE']
         ],
     ];

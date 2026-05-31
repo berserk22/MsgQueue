@@ -13,8 +13,8 @@ use DI\DependencyException;
 use DI\NotFoundException;
 use Modules\Dashboard\DashboardTrait;
 use Modules\MsgQueue\MsgQueueTrait;
-use Slim\Http\Response;
-use Slim\Http\ServerRequest as Request;
+use Slim\Psr7\Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Swift_Message;
 
 class DashboardController extends Dashboard {

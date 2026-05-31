@@ -39,15 +39,11 @@ class ServiceProvider extends Provider {
     public function init(): void {
         $container = $this->getContainer();
         if (!$container->has('MsgQueue\Queue')){
-            $container->set('MsgQueue\Queue', function(){
-                return new MsgQueue($this);
-            });
+            $container->set('MsgQueue\Queue', new MsgQueue($this));
         }
 
         if (!$container->has($this->dashboardRouter)){
-            $container->set($this->dashboardRouter, function(){
-                return new DashboardRouter($this);
-            });
+            $container->set($this->dashboardRouter, new DashboardRouter($this));
         }
     }
 
@@ -75,10 +71,8 @@ class ServiceProvider extends Provider {
         }
 
         if (!$container->has('MsgQueue\Manager')) {
-            $this->getContainer()->set('MsgQueue\Manager', function(){
-                $manager = new MsgManager($this);
-                return $manager->initEntity();
-            });
+            $manager = new MsgManager($this);
+            $this->getContainer()->set('MsgQueue\Manager', $manager->initEntity());
         }
     }
 
@@ -88,9 +82,7 @@ class ServiceProvider extends Provider {
     public function boot(): void {
         $container = $this->getContainer();
 
-        $container->set('Modules\MsgQueue\Controller\DashboardController', function(){
-            return new Controller\DashboardController($this);
-        });
+        $container->set('Modules\MsgQueue\Controller\DashboardController', new Controller\DashboardController($this));
 
     }
 
